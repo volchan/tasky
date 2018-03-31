@@ -1,8 +1,9 @@
+const path = require("path");
 const electron = require("electron");
 
-const { app, BrowserWindow } = electron;
+const { app, BrowserWindow, Tray } = electron;
 
-let mainWindow;
+let mainWindow, trayIcon;
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
@@ -11,5 +12,10 @@ app.on("ready", () => {
     frame: false,
     resizable: false
   });
+
   mainWindow.loadURL(`file://${__dirname}/src/index.html`);
+
+  const iconName = process.platform === "darwin" ? "iconTemplate.png" : "windows-icon@2x.png";
+  const iconPath = path.join(__dirname, `./src/assets/${iconName}`);
+  trayIcon = new Tray(iconPath);
 });
