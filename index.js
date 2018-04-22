@@ -1,7 +1,7 @@
 const path = require("path");
 const electron = require("electron");
 
-const TimerTray = require("./app/timer_tray")
+const TimerTray = require("./app/timer_tray");
 
 const { app, BrowserWindow, Tray } = electron;
 
@@ -17,6 +17,7 @@ app.on("ready", () => {
   });
 
   mainWindow.loadURL(`file://${__dirname}/src/index.html`);
+  mainWindow.on("blur", () => mainWindow.hide());
 
   const osx = process.platform === "darwin";
 
