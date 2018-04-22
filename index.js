@@ -1,11 +1,11 @@
 const path = require("path");
 const electron = require("electron");
 
-const TimerTray = require("./app/timer_tray");
+const TimerTray = require("./app/timer_tray")
 
 const { app, BrowserWindow, Tray } = electron;
 
-let mainWindow;
+let mainWindow, tray;
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
@@ -23,5 +23,5 @@ app.on("ready", () => {
   const iconName = osx ? "iconTemplate.png" : "windows-icon@2x.png";
   const iconPath = path.join(__dirname, `./src/assets/${iconName}`);
 
-  new TimerTray(iconPath, mainWindow);
+  tray = new TimerTray(iconPath, mainWindow);
 });
