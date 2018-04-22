@@ -1,5 +1,6 @@
 const electron = require("electron");
 const { Tray, app, Menu } = electron;
+
 class TimerTray extends Tray {
   constructor(iconPath, mainWindow) {
     super(iconPath);
