@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { ipcRenderer } from "electron";
 
 import Header from "./Header";
 import TasksIndex from "./TasksIndex";
@@ -44,15 +45,15 @@ class App extends Component {
   // --------------------------------------------------
 
   onAppClose = () => {
-
+    ipcRenderer.send("update-timer", "");
   };
 
   updateTrayText = title => {
-
+    ipcRenderer.send("update-timer", title);
   };
 
   timerHasExpired = () => {
-
+    ipcRenderer.send("update-timer", "");
   };
 
   // -------- end of electron event handerls ----------
